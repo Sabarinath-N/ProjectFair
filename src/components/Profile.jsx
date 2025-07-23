@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { updateProfileApi } from '../services/allApis'
 import { useNavigate } from 'react-router-dom'
-import { authContext } from '../contextApi/ContextApi'
+import { authContext } from '../contextApis/ContextApi'
 import base_url from '../services/base_url'
 
 function Profile() {

@@ -5,7 +5,7 @@ import Profile from '../components/Profile'
 import { deleteProjectApi, userProjectsApi } from '../services/allApis'
 import { toast } from 'react-toastify'
 import Edit from '../components/Edit'
-import { addResponseContext, editResponseContext } from '../contextApi/ContextApi'
+import { addResponseContext, editResponseContext } from '../contextApis/ContextApi'
 
 function Dashboard() {
 

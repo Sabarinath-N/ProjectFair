@@ -11,7 +11,7 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import { ToastContainer } from 'react-toastify'
 import { useContext } from 'react'
-import { authContext } from './contextApi/ContextApi'
+import { authContext } from './contextApis/ContextApi'
 
 function App() {
 

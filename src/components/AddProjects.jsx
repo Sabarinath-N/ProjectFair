@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { toast } from 'react-toastify';
 import { addProjectApi } from '../services/allApis';
-import { addResponseContext } from '../contextApi/ContextApi';
+import { addResponseContext } from '../contextApis/ContextApi';
 
 function AddProjects() {
 

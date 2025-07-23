@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { logUserApi, regUserApi } from '../services/allApis';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { authContext } from '../contextApi/ContextApi';
+import { authContext } from '../contextApis/ContextApi';
 
 
 function Auth() {
