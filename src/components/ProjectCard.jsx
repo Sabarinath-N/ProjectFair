@@ -3,8 +3,9 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 import Modal from 'react-bootstrap/Modal';
+import base_url from '../services/base_url';
 
-function ProjectCard() {
+function ProjectCard({project}) {
 
     const [show, setShow] = useState(false)
 
@@ -13,43 +14,38 @@ function ProjectCard() {
 
     return (
         <>
-            <Card style={{ width: '18rem' }}>
-                <Card.Img onClick={handleShow} variant="top" src="https://intdevalliance.scot/wp-content/uploads/2023/08/project_fair.png" style={{ height: "200px" }} />
+            <Card style={{ width: '18rem' , marginBottom:'20px' }}>
+                <Card.Img onClick={handleShow} variant="top" src={`${base_url}/projectimg/${project.image}`} style={{ height: "200px" }} />
                 <Card.Body>
-                    <Card.Title>Card Title</Card.Title>
-                    {/* <Card.Text>
-                            Some quick example text to build on the card title and make up the
-                            bulk of the card's content.
-                        </Card.Text> */}
-
+                    <Card.Title>{project.title}</Card.Title>
+                    
                 </Card.Body>
             </Card>
 
             <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false} >
                 <Modal.Header closeButton>
-                    <Modal.Title>Project title</Modal.Title>
+                    <Modal.Title>{project.title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className="row">
                         <div className="col">
-                            <img src="https://intdevalliance.scot/wp-content/uploads/2023/08/project_fair.png" className='w-100' alt="" />
+                            <img src={`${base_url}/projectimg/${project.image}`} className='w-100' alt="" />
                         </div>
                         <div className="col">
-                            <h3>Project Title</h3>
+                            <h3>{project.title}</h3>
                             <p>
                                 <span className='fw-bolder'>Description :</span>
-                                I will not close if you click outside me. Do not even try to press
-                                escape key.
+                                {project.description}
                             </p>
                             <p>
                                 <span className='fw-bolder'>Languages :</span>
-                                HTML,CSS,JS
+                                {project.languages}
                             </p>
                             <div className="d-flex justify-content-between">
-                                <a href="">
+                                <a href={project.gitrepo}>
                                     <i className="fa-brands fa-github fa-2xl"></i>
                                 </a>
-                                <a href="">
+                                <a href={project.demo}>
                                     <i class="fa-solid fa-link fa-2xl"></i>
                                 </a>
                             </div>

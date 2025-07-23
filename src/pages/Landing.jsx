@@ -1,14 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Projects from './Projects'
 import { Link } from 'react-router-dom'
 import ProjectCard from '../components/ProjectCard'
 import Header from '../components/Header'
+import { allProjectsApi } from '../services/allApis'
 
 function Landing() {
+    const [logState, setLogState] = useState()
+    const [samples, setSamples] = useState([])
+
+    useEffect(() => {
+        getData()
+        if (sessionStorage.getItem("token")) {
+            setLogState(true)
+        }
+        else {
+            setLogState(false)
+        }
+    }, [])
+
+    const getData = async () => {
+        const response = await allProjectsApi()
+        console.log(response);
+        if (response.status == 200) {
+            setSamples(response.data.slice(0, 3))
+        }
+        else {
+            console.log(response);
+        }
+    }
+
+
     return (
         <>
 
-        <Header/>
+            <Header />
             <div className="container-fluid">
                 <div className="w-100 row" style={{ minHeight: "60vh" }}>
                     <div className="col-sm-12 col-md-6 p-5">
@@ -19,7 +45,12 @@ function Landing() {
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus odit fugit quidem aspernatur suscipit modi et expedita iusto dolores iure officia atque, perspiciatis laudantium facilis deserunt cum rerum? Molestias, exercitationem!
                         </p>
                         <div className='d-grid'>
-                            <Link className='btn btn-warning' to={'/auth'}> Explore Now ...</Link>
+                            {
+                                logState ?
+                                    <Link className='btn btn-success' to={'/dash'}> Go to Dashboard </Link>
+                                    :
+                                    <Link className='btn btn-warning' to={'/auth'}> Explore Now ...</Link>
+                            }
                         </div>
                     </div>
                     <div className="col-sm-12 col-md-6 d-flex justify-content-center">
@@ -29,9 +60,19 @@ function Landing() {
                 <div className="w-100 my-5">
                     <h2>Projects You May Like</h2>
                     <div className="d-flex justify-content-around">
-                        <ProjectCard />
-                        <ProjectCard />
-                        <ProjectCard />
+                        {
+                            samples.length>0?
+                            <>
+                            {
+                                samples.map(item=>(
+                                    <ProjectCard project={item}/>
+                                ))
+                            }
+                            </>
+                            :
+                            <h4 className="text-center text-danger">No Projects Available!!!</h4>
+                        }
+                        
                     </div>
 
                 </div>
